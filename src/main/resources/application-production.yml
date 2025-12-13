@@ -1,0 +1,3 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-d4uoiije5dus73a0cf60-a:5432/task_manager_db_y37g?password=JHXn5uMUQ6bcennk5nCsoE2zvjNG3qhn&user=task_manager_db_y37g_user
