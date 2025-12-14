@@ -1,17 +1,14 @@
 spring:
   datasource:
-    driver-class-name: org.h2.Driver   # общий драйвер (будет переопределен для prod)
+    driver-class-name: org.h2.Driver  # дефолт (перекроется в prod)
   jpa:
-    ddl-auto: update
     show-sql: true
-    properties:
     hibernate:
       ddl-auto: update
-  profiles:
-    active: development
   output:
     ansi:
-      enabled: always    # цветной вывод логов
+      enabled: always
+
 logging:
   pattern:
-    dateformat: "yyyy-MM-dd HH:mm:ss"  # кастомный формат даты в логах
+    dateformat: "yyyy-MM-dd HH:mm:ss"
