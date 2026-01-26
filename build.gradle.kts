@@ -4,6 +4,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.1.7"
 	kotlin("kapt") version "1.9.25"
 	checkstyle
+	id("org.sonarqube") version "6.2.0.5505"
 }
 
 group = "hexlet.code"
@@ -55,4 +56,11 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+sonar {
+	properties {
+		property("sonar.projectKey", "GishebetMaksim_java-project-99")
+		property("sonar.organization", "gishebetmaksim")
+	}
 }
