@@ -38,6 +38,4 @@ out/
 
 *:Zone.Identifier
 
-src/main/resources/certs/private.pem
-
 node_modules/
