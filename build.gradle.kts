@@ -5,6 +5,7 @@ plugins {
 	kotlin("kapt") version "1.9.25"
 	checkstyle
 	id("org.sonarqube") version "6.2.0.5505"
+	id("jacoco")
 }
 
 group = "hexlet.code"
@@ -56,6 +57,11 @@ dependencies {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.jacocoTestReport {
+	reports { xml.required.set(true)
+	}
 }
 
 sonar {
