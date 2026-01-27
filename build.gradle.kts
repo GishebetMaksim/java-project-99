@@ -64,9 +64,17 @@ tasks.jacocoTestReport {
 	}
 }
 
+tasks.test {
+	finalizedBy(tasks.jacocoTestReport)
+}
+
 sonar {
 	properties {
 		property("sonar.projectKey", "GishebetMaksim_java-project-99")
 		property("sonar.organization", "gishebetmaksim")
+		property(
+			"sonar.coverage.jacoco.xmlReportPaths",
+			"build/reports/jacoco/test/jacocoTestReport.xml"
+		)
 	}
 }
