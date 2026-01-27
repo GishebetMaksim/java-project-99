@@ -1,5 +1,6 @@
 package hexlet.code.utils;
 
+import hexlet.code.exception.ResourceNotFoundException;
 import hexlet.code.model.User;
 import hexlet.code.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ public class UserUtils {
             return null;
         }
         var email = authentication.getName();
-        return userRepository.findByEmail(email).get();
+        return userRepository.findByEmail(email).
+                orElseThrow(() -> new ResourceNotFoundException("No user found with email = " + email));
     }
 }
