@@ -6,6 +6,7 @@ plugins {
 	checkstyle
 	id("org.sonarqube") version "6.2.0.5505"
 	id("jacoco")
+	id("io.sentry.jvm.gradle") version "6.0.0"
 }
 
 group = "hexlet.code"
@@ -77,4 +78,14 @@ sonar {
 			"build/reports/jacoco/test/jacocoTestReport.xml"
 		)
 	}
+}
+
+sentry {
+	// Generates a JVM (Java, Kotlin, etc.) source bundle and uploads your source code to Sentry.
+	// This enables source context, allowing you to see your source
+	// code as part of your stack traces in Sentry.
+	includeSourceContext.set(true)
+	org.set("gishebet-maksim")
+	projectName.set("java-spring-boot")
+	authToken.set(System.getenv("SENTRY_AUTH_TOKEN"))
 }
