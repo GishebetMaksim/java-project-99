@@ -1,4 +1,4 @@
-package hexlet.code.service;
+package hexlet.code.service.implementations;
 
 import hexlet.code.dto.task.TaskCreateDTO;
 import hexlet.code.dto.task.TaskDTO;
@@ -7,6 +7,7 @@ import hexlet.code.dto.task.TaskUpdateDTO;
 import hexlet.code.exception.ResourceNotFoundException;
 import hexlet.code.mapper.TaskMapper;
 import hexlet.code.repository.TaskRepository;
+import hexlet.code.service.interfaces.TaskService;
 import hexlet.code.specification.TaskSpecification;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,16 +17,12 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class TaskService {
+public class TaskServiceImpl implements TaskService {
     private final TaskRepository repository;
     private final TaskMapper mapper;
     private final TaskSpecification specBuilder;
 
     public List<TaskDTO> findAll(TaskParamsDTO params, int page) {
-//        return repository.findAll().stream()
-//                .map(mapper::map)
-//                .toList();
-
         var spec = specBuilder.build(params);
         var tasks = repository.findAll(spec, PageRequest.of(page - 1, 10));
         return tasks.map(mapper::map).toList();

@@ -4,8 +4,9 @@ import hexlet.code.dto.task.TaskCreateDTO;
 import hexlet.code.dto.task.TaskDTO;
 import hexlet.code.dto.task.TaskParamsDTO;
 import hexlet.code.dto.task.TaskUpdateDTO;
-import hexlet.code.service.TaskService;
+import hexlet.code.service.interfaces.TaskService;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,15 +22,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/api/tasks")
 public class TaskController {
-
     private final TaskService service;
-
-    public TaskController(TaskService service) {
-        this.service = service;
-    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

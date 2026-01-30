@@ -1,6 +1,7 @@
 package hexlet.code.controller;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.jwt;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -116,7 +117,6 @@ public class UsersControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
-
         var data = new HashMap<>();
         data.put("firstName", "Mike");
 
@@ -127,5 +127,13 @@ public class UsersControllerTest {
 
         var user = userRepository.findById(testUser.getId()).orElseThrow();
         assertThat(user.getFirstName()).isEqualTo(("Mike"));
+    }
+
+    @Test
+    public void testDestroy() throws Exception {
+        var request = delete("/api/users/" + testUser.getId()).with(token);
+        mockMvc.perform(request).andExpect(status().isNoContent());
+
+        assertThat(userRepository.existsById(testUser.getId())).isEqualTo(false);
     }
 }
