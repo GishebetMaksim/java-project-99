@@ -2,11 +2,13 @@ package hexlet.code.component;
 
 import hexlet.code.dto.label.LabelCreateDTO;
 import hexlet.code.dto.taskstatus.TaskStatusCreateDTO;
+import hexlet.code.dto.user.UserCreateDTO;
 import hexlet.code.model.User;
 import hexlet.code.repository.TaskStatusRepository;
 import hexlet.code.service.implementations.CustomUserDetailsService;
 import hexlet.code.service.implementations.LabelServiceImpl;
 import hexlet.code.service.implementations.TaskStatusServiceImpl;
+import hexlet.code.service.interfaces.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -15,18 +17,17 @@ import org.springframework.stereotype.Component;
 @Component
 @AllArgsConstructor
 public class DataInitializer implements ApplicationRunner {
-    private final CustomUserDetailsService userService;
+    private final UserService userService;
     private final TaskStatusRepository taskStatusRepository;
     private final TaskStatusServiceImpl taskStatusService;
     private final LabelServiceImpl labelService;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        var user = new User();
-        user.setEmail("hexlet@example.com");
-        user.setPasswordDigest("qwerty");
-        userService.createUser(user);
-
+        var userData = new UserCreateDTO();
+        userData.setEmail("hexlet@example.com");
+        userData.setPassword("qwerty");
+        userService.create(userData);
 
         String[][] statuses = {
                 {"Draft", "draft"},
