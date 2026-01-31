@@ -35,7 +35,7 @@ dependencies {
 	implementation("org.mapstruct:mapstruct:1.5.5.Final")
 	implementation("net.datafaker:datafaker:2.0.1")
 	implementation("org.instancio:instancio-junit:3.3.0")
-	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.15")
+	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.6")
 
 	annotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
 	testAnnotationProcessor("org.mapstruct:mapstruct-processor:1.5.5.Final")
